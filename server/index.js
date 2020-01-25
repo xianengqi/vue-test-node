@@ -2,6 +2,8 @@ const express = require('express')
 
 const app = express()
 
+app.set('secret', 'iad243ff234reeg')
+
 app.use(express.json())
 app.use(require('cors')())
 

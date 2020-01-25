@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>文章列表</h1>
+    <h1>管理员列表</h1>
     <el-table :data="items">
       <el-table-column
         prop="_id"
@@ -9,8 +9,13 @@
       >
       </el-table-column>
       <el-table-column
-        prop="title"
-        label="标题"
+        prop="username"
+        label="用户名"
+      >
+      </el-table-column>
+      <el-table-column
+        prop="name"
+        label="分类名称"
       >
       </el-table-column>
       <el-table-column
@@ -22,7 +27,7 @@
           <el-button
             type="text"
             size="small"
-            @click="$router.push(`/articles/edit/${scope.row._id}`)"
+            @click="$router.push(`/admin_users/edit/${scope.row._id}`)"
           >编辑</el-button>
           <el-button
             type="text"
@@ -44,17 +49,17 @@
     },
     methods: {
       async fetch() {
-        const res = await this.$http.get('rest/articles')
+        const res = await this.$http.get('rest/admin_users')
         this.items = res.data
       },
       async remove(rows) {
-        this.$confirm(`是否确定要删除文章 "${rows.title}"`, '提示', {
+        this.$confirm(`是否确定要删除 "${rows.name}"`, '提示', {
           confirmButtonText: '确定',
           cancelButtonText: '取消',
           type: 'warning'
         })
         .then(async() => {
-          const res = await this.$http.delete(`rest/articles/${rows._id}`)
+          const res = await this.$http.delete(`rest/admin_users/${rows._id}`)
           this.$message({
             type: 'success',
             message: '删除成功!'

@@ -6,6 +6,8 @@ import './plugins/element.js'
 
 import http from './http'
 
+import '../style.css'
+
 Vue.prototype.$http = http
 
 Vue.config.productionTip = false
